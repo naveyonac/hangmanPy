@@ -1010,8 +1010,8 @@ def playGame():
         wordSplit = list(randWord)
         print(wordSplit)
         wordLen = len(wordSplit)
-        print("___ " * wordLen)
         playerGuess(correctGuesses, correctCount, wrongGuesses, wrongCount, wordSplit, wordLen)
+        print("Congratulations, You Win!")
 
 
     else:
@@ -1020,11 +1020,19 @@ def playGame():
 
 def playerGuess(correctGuesses, correctCount, wrongGuesses, wrongCount, wordSplit, wordLen):
     while correctCount != wordLen:
+        showBlanks(wordLen)
         guessLwr = input("Pick a letter to guess.. ")
         guess = guessLwr.lower()
         for x in wordSplit:
             if x == guess:
+                correctCount += 1
                 correctGuesses.append(guess)
+                print(correctGuesses)
+                print(correctCount)
+
+def showBlanks(wordLen):
+    print("___ " * wordLen)
+
 
 
 playGame()
