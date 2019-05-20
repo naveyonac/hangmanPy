@@ -997,8 +997,34 @@ import random
 
 
 def playGame():
-    randNum = random.randint(0, len(wordsList))
-    randWord = wordsList[randNum]
-    print(randWord)
+    
+    strt = input("Would you like to play a game of Hangman?[y/n] ")
+    if strt == "y":
+        correctGuesses = []
+        correctCount = 0
+        wrongGuesses = []
+        wrongCount = 0
+        randNum = random.randint(0, len(wordsList))
+        randWord = wordsList[randNum]
+        print(randWord)
+        wordSplit = list(randWord)
+        print(wordSplit)
+        wordLen = len(wordSplit)
+        print("___ " * wordLen)
+        playerGuess(correctGuesses, correctCount, wrongGuesses, wrongCount, wordSplit, wordLen)
+
+
+    else:
+        print("Goodbye ")
+
+
+def playerGuess(correctGuesses, correctCount, wrongGuesses, wrongCount, wordSplit, wordLen):
+    while correctCount != wordLen:
+        guessLwr = input("Pick a letter to guess.. ")
+        guess = guessLwr.lower()
+        for x in wordSplit:
+            if x == guess:
+                correctGuesses.append(guess)
+
 
 playGame()
