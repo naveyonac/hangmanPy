@@ -990,11 +990,15 @@ wordsList = ["Armour",
   "womanhood",
   "words",
   "workman",
-  "youngster" 
+  "youngster",
+  "teessssttttting" 
 ]
 
 import random
 
+
+
+# Initializing game
 
 def playGame():
     
@@ -1005,7 +1009,7 @@ def playGame():
         wrongGuesses = []
         wrongCount = 0
         randNum = random.randint(0, len(wordsList))
-        randWord = wordsList[randNum]
+        randWord = wordsList[-1]
         print(randWord)
         wordSplit = list(randWord)
         print(wordSplit)
@@ -1020,18 +1024,29 @@ def playGame():
 
 def playerGuess(correctGuesses, correctCount, wrongGuesses, wrongCount, wordSplit, wordLen):
     while correctCount != wordLen:
-        showBlanks(wordLen)
+        showBlanks(wordLen, wordSplit, correctGuesses)
         guessLwr = input("Pick a letter to guess.. ")
         guess = guessLwr.lower()
+        checkGuess(wordSplit, guess, correctCount, correctGuesses, wrongCount, wrongGuesses)
+
+def showBlanks(wordLen, wordSplit, correctGuesses):
+    print("___ " * wordLen)
+
+def checkGuess(wordSplit, guess, correctCount, correctGuesses, wrongCount, wrongGuesses):
+    if guess in wordSplit:
         for x in wordSplit:
             if x == guess:
                 correctCount += 1
                 correctGuesses.append(guess)
-                print(correctGuesses)
-                print(correctCount)
+                print("Correct Letters %s" % (correctGuesses))
+                print("Correct Count %s" % (correctCount))
+        return correctCount, correctGuesses
+    else:
+        wrongCount += 1
+        wrongGuesses.append(guess)
+        print("Wrong Letters %s" % (wrongGuesses))
+        print("Wrong Count  %s" % (wrongCount))
 
-def showBlanks(wordLen):
-    print("___ " * wordLen)
 
 
 
